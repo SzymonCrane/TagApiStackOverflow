@@ -24,8 +24,15 @@ namespace TagApiStackOverflow
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient("tags", t =>
+            {
+                // StackOverflow API address
+                t.BaseAddress = new Uri("https://stackoverflow.com/oauth");
+                // 
+                t.DefaultRequestHeaders.Add("Accept", "");
+            });
         }
-
+        // My acces code: FpOAF00db*pPjQIWKsI6Vw))
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
