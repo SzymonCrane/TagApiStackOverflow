@@ -24,12 +24,11 @@ namespace TagApiStackOverflow
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddHttpClient("tags", t =>
+            services.AddHttpClient("stackoverflow", s =>
             {
-                // StackOverflow API address
-                t.BaseAddress = new Uri("https://stackoverflow.com/oauth");
-                // 
-                t.DefaultRequestHeaders.Add("Accept", "");
+                s.BaseAddress = new Uri("https://stackoverflow.com/oauth");
+                s.DefaultRequestHeaders.Add("Accept", "FpOAF00db*pPjQIWKsI6Vw))");
+                s.DefaultRequestHeaders.Add("User-Agent", "HttpClientTag-Sample");
             });
         }
         // My acces code: FpOAF00db*pPjQIWKsI6Vw))
