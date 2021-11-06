@@ -27,8 +27,9 @@ namespace TagApiStackOverflow
             services.AddHttpClient("stackoverflow", s =>
             {
                 s.BaseAddress = new Uri("https://stackoverflow.com/oauth");
-                s.DefaultRequestHeaders.Add("Accept", "FpOAF00db*pPjQIWKsI6Vw))");
-                s.DefaultRequestHeaders.Add("User-Agent", "HttpClientTag-Sample");
+                s.DefaultRequestHeaders.Add("client_id", "1");
+                s.DefaultRequestHeaders.Add("site", "stackoverflow");
+                s.DefaultRequestHeaders.Add("redirect_uri", "https://api.stackexchange.com/");
             });
         }
         // My acces code: FpOAF00db*pPjQIWKsI6Vw))
