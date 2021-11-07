@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TagApiStackOverflow.Models;
 
 namespace TagApiStackOverflow
 {
@@ -24,15 +25,17 @@ namespace TagApiStackOverflow
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient<StackOverFlowClient>(c =>
+            c.BaseAddress = new Uri("https://api.stackexchange.com/2.3"
+            ));
             services.AddHttpClient("stackoverflow", s =>
             {
-                s.BaseAddress = new Uri("https://stackoverflow.com/oauth");
+                s.BaseAddress = new Uri("https://api.stackexchange.com/2.3");
                 s.DefaultRequestHeaders.Add("client_id", "1");
                 s.DefaultRequestHeaders.Add("site", "stackoverflow");
-                s.DefaultRequestHeaders.Add("redirect_uri", "https://api.stackexchange.com/");
+                s.DefaultRequestHeaders.Add("redirect_uri", "https://api.stackexchange.com/2.3/tags?");
             });
         }
-        // My acces code: FpOAF00db*pPjQIWKsI6Vw))
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

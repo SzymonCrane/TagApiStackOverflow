@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TagApiStackOverflow.Models;
 
@@ -17,7 +18,19 @@ namespace TagApiStackOverflow.Controllers
         {
             _logger = logger;
         }
-
+        public class TagsController : Tags
+        {
+            private ITagsRepository _tagsRepository;  
+            public TagsController(ITagsRepository tagsRepository)
+            {
+                _tagsRepository = tagsRepository;
+            }
+            public IActionResult GetTag(int id)
+            {
+                Tags tag = _tagsRepository.GetTag(id);
+                return View(tag);
+            }
+        }
         public IActionResult Index()
         {
             return View();
